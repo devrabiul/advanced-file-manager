@@ -1,0 +1,62 @@
+.placeholder-loading {
+    background-color: #ced4da;
+    min-height: 30px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-loading:before {
+    -webkit-animation: ph-animation .8s linear infinite;
+    animation: ph-animation .8s linear infinite;
+    background: linear-gradient(145deg, hsla(0, 0%, 100%, 0) 46%, hsla(0, 0%, 100%, 0.122) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%;
+    bottom: 0;
+    content: " ";
+    left: 50%;
+    margin-left: -250%;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 500%;
+    z-index: 1;
+}
+
+@-webkit-keyframes ph-animation {
+    0% {
+        transform: translate3d(-30%, 0, 0);
+    }
+    100% {
+        transform: translate3d(30%, 0, 0);
+    }
+}
+
+@keyframes ph-animation {
+    0% {
+        transform: translate3d(-30%, 0, 0);
+    }
+    100% {
+        transform: translate3d(30%, 0, 0);
+    }
+}
+
+.placeholder-loading.quick-access-loader {
+    border-radius: 0.5rem;
+}
+
+.placeholder-loading.folder-item-icon-loader {
+    min-height: 60px;
+    width: 70px;
+    border-radius: 5px;
+}
+
+.placeholder-loading.folder-item-title-loader {
+    min-height: 15px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.placeholder-loading.folder-item-info-loader {
+    min-height: 10px;
+    border-radius: 5px;
+}

@@ -1,0 +1,28 @@
+<?php
+
+return [
+	"Archives" => "Archives",
+	"Browse_and_organize_your_files_effortlessly" => "Browse and organize your files effortlessly",
+	"Copy" => "Copy",
+	"Delete" => "Delete",
+	"Documents" => "Documents",
+	"Files" => "Files",
+	"Folders" => "Folders",
+	"Get_Info" => "Get Info",
+	"Images" => "Images",
+	"Main_Directory" => "Main Directory",
+	"Manage your folders easily" => "Manage your folders easily",
+	"Manage_your_folders_easily" => "Manage your folders easily",
+	"Move" => "Move",
+	"Music" => "Music",
+	"No_Folder_Found" => "No Folder Found",
+	"Open" => "Open",
+	"Others" => "Others",
+	"Recent_Files" => "Recent Files",
+	"Rename" => "Rename",
+	"Smart_File_Sync" => "Smart File Sync",
+	"This_folder_is_empty." => "This folder is empty.",
+	"Upload" => "Upload",
+	"Upload_some_Folder_to_get_started" => "Upload some Folder to get started",
+	"Videos" => "Videos",
+];

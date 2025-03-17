@@ -1,0 +1,369 @@
+/* Sidebar Styling */
+.file-manager-sidebar-container {
+    width: var(--file-manager-sidebar-width);
+    height: 100%;
+    padding: 1.5rem;
+    border-right: 1px solid #eee;
+    background: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow-y: auto;
+    min-width: 280px;
+}
+
+.file-manager-sidebar-container::-webkit-scrollbar {
+    position: absolute;
+    width: .25rem;
+}
+
+.file-manager-sidebar-container::-webkit-scrollbar-thumb {
+    background: #019875;
+}
+
+.file-manager-sidebar-container::-webkit-scrollbar-track {
+    background: #072342;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #364a63;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-header h4 {
+    font-size: 1.1rem;
+    color: #364a63;
+    margin: 0;
+}
+
+/* Mobile close button */
+.sidebar-close-mobile {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: .875rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.sidebar-close-mobile:hover {
+    color: #333;
+}
+
+/* Quick Access Section */
+
+.quick-access-section-title {
+    color: #1e293b;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+}
+
+.quick-access-section {
+    margin-bottom: 2rem;
+    max-height: calc(100% - 9.5rem);
+    overflow-y: auto;
+    padding-inline-end: .25rem;
+}
+
+.quick-access-section::-webkit-scrollbar {
+    position: absolute;
+    width: .125rem;
+}
+
+.quick-access-section::-webkit-scrollbar-thumb {
+    background: #019875;
+}
+
+.quick-access-section::-webkit-scrollbar-track {
+    background: #072342;
+}
+
+.quick-access-items {
+    gap: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.quick-access-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem .85rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    color: #64748b;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: .85rem;
+    cursor: pointer;
+}
+
+.quick-access-item:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.quick-access-item i {
+    margin-right: 0.75rem;
+}
+
+
+/* Storage Section */
+.storage-info-section {
+    padding: 1.25rem;
+    background: #f8fafc;
+    border-radius: 1rem;
+    margin-top: auto;
+    border: 1px solid #e2e8f0;
+    width: calc(100% - 3rem); /* Account for parent padding */
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+}
+
+.storage-progress {
+    margin: .5rem 0;
+}
+
+.storage-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #475569;
+    font-size: .875rem;
+}
+
+.storage-title i {
+    font-size: 1rem;
+    color: #3b82f6;
+}
+
+.storage-percentage {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.storage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    border-radius: 999px;
+    position: relative;
+    transition: width 0.3s ease;
+}
+
+.progress-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 12px;
+    background: #fff;
+    filter: blur(4px);
+    opacity: 0.6;
+}
+
+.storage-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.storage-used,
+.storage-total {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.storage-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.storage-value {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.storage-divider {
+    width: 1px;
+    height: 2rem;
+    background: #e2e8f0;
+}
+
+/* Hover effects */
+.storage-info-section:hover .progress {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .file-manager-sidebar-container {
+        width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+
+    .file-manager-sidebar-container {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        width: 280px;
+        z-index: 1000;
+        box-shadow: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .file-manager-sidebar-container.show {
+        left: 0;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-overlay {
+        display: none;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    .sidebar-close-mobile {
+        display: block;
+    }
+
+    /* Prevent body scroll when sidebar is open */
+    body.sidebar-open {
+        overflow: hidden;
+    }
+
+    /* Adjust main content when sidebar is hidden */
+    .file-manager-files-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .storage-text {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .type-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .storage-type-item {
+        gap: 0.75rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .progress-bar {
+        background: #64748b;
+    }
+
+    .storage-label {
+        color: #94a3b8;
+    }
+
+    .storage-divider {
+        background: #334155;
+    }
+}
+
+/* Quick Access Dropdown */
+.quick-access-dropdown {
+    position: relative;
+    width: 100%;
+    margin: 0.75rem 0;
+}
+
+.quick-access-dropdown .custom-select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    color: #333;
+}
+
+.quick-access-dropdown .bi-chevron-down {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
+}
+
+.quick-access-dropdown .custom-select:hover {
+    background-color: #efefef;
+    border-color: #d0d0d0;
+}
+
+.quick-access-dropdown .custom-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+/* Quick Access Dropdown */

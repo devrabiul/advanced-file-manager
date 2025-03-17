@@ -1,0 +1,711 @@
+/* Files Container */
+.file-manager-files-container {
+    width: calc(100% - var(--file-manager-sidebar-width));
+    padding: 1.5rem;
+    height: 100%;
+    overflow-y: auto;
+    transition: 0.3s ease-in-out all;
+    position: relative;
+}
+
+/* Adjust file container width on smaller screens */
+@media (max-width: 768px) {
+    .file-manager-files-container {
+        width: 100%;
+    }
+}
+
+.file-manager-files-container::-webkit-scrollbar {
+    position: absolute;
+    width: 0;
+}
+
+.file-manager-files-container::-webkit-scrollbar-thumb {
+    background: #019875;
+}
+
+.file-manager-files-container::-webkit-scrollbar-track {
+    background: #072342;
+}
+
+.file-manager-files-container .folders-section-title {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    color: #364a63;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    user-select: none;
+}
+
+.file-manager-files-container .folders-section-subtitle {
+    font-size: .85rem;
+    line-height: 1rem;
+    margin-bottom: .85rem;
+    color: #364a63;
+}
+
+.file-manager-files-container .folders-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+/* File Manager Folders Section || Start */
+.file-manager-folders-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+    grid-auto-flow: dense;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+    .file-manager-folders-section,
+    .file-manager-files-section {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .file-manager-folders-section,
+    .file-manager-files-section {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .file-manager-files-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .file-manager-folders-section {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .file-manager-files-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+.file-manager-folder-item {
+    background: var(--folder-item-bg);
+    border-radius: var(--folder-border-radius, .5rem);
+    box-shadow: var(--box-shadow-style-1);
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    max-width: 100%;
+    user-select: none;
+}
+
+.file-manager-folder-item .folder-icon {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.file-manager-folder-item .folder-icon svg,
+.file-manager-folder-item .folder-icon img {
+    height: 60px;
+    width: 100%;
+    object-fit: contain;
+    /* fill: #798BFF; */
+}
+
+.file-manager-folder-item .folder-icon-back svg,
+.file-manager-folder-item .folder-icon-back img {
+    height: 40px;
+}
+
+.file-manager-folder-item .folder-icon .image-file {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+    border-radius: .25rem;
+}
+
+.file-manager-folder-item .folder-title {
+    font-size: .85rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0 0 .25rem 0;
+}
+
+.file-manager-folder-item .folder-info {
+    font-size: .65rem;
+    font-weight: 400;
+}
+
+.file-manager-folder-item .files-option-element {
+    position: absolute;
+    top: 1rem;
+    inset-inline-end: 1rem;
+}
+
+.file-manager-folder-item .files-option-element .menu-dot {
+    border: 0;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+}
+
+/* File Manager Files Section || Start */
+.file-manager-files-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    grid-auto-flow: dense;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: start;
+    user-select: none;
+}
+
+.file-manager-files-item {
+    background: var(--folder-item-bg);
+    border-radius: var(--folder-border-radius);
+    box-shadow: var(--box-shadow-style-1);
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+.file-manager-files-item .files-icon {
+    height: 80px;
+    width: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    display: flex;
+    align-items: end;
+    border-radius: .25rem;
+    overflow: hidden;
+}
+
+.file-manager-files-item .files-icon a {
+    height: 100%;
+    width: 100%;
+}
+
+.file-manager-files-item .files-icon img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+}
+
+.file-manager-files-item .files-icon .image-file {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.file-manager-files-item:hover .files-icon .image-file {
+    transform: scale(1.25);
+}
+
+.file-manager-files-item .files-information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    width: 100%;
+}
+
+.file-manager-files-item .files-title {
+    font-size: .85rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0 0 .25rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
+}
+
+.file-manager-files-item .files-info {
+    font-size: .65rem;
+    font-weight: 400;
+    text-align: start;
+    width: 80%;
+}
+
+.file-manager-files-item .files-option-element {
+    position: absolute;
+    top: 1rem;
+    inset-inline-end: 1rem;
+}
+
+.file-manager-files-item .files-option-element .menu-dot {
+    border: 0;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+}
+
+/* File Manager Files Section || End */
+
+/* File Manager Files Section - List View || Start */
+.file-manager-files-section.grid-view {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.file-manager-files-section.grid-view .file-manager-files-item {
+    aspect-ratio: 1;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.file-manager-files-section.grid-view .file-manager-files-item .files-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.file-manager-files-section.grid-view .file-manager-files-item .files-information {
+    position: absolute;
+    background: #ffffffe4;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    align-items: center;
+    opacity: 0;
+    transition: .5s ease-in-out opacity;
+}
+
+.file-manager-files-section.grid-view .file-manager-files-item:hover .files-information {
+    opacity: 1;
+}
+
+/* File Manager Files Section - List View || End */
+
+
+/* File Manager Empty State || Start */
+.file-manager-empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.file-manager-empty-state .empty-state-content {
+    text-align: center;
+    padding: 40px;
+}
+
+.file-manager-empty-state .empty-state-content i {
+    font-size: 48px;
+    color: #6c757d;
+    margin-bottom: 16px;
+}
+
+.file-manager-empty-state .empty-state-content h3 {
+    color: #343a40;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.file-manager-empty-state .empty-state-content p {
+    color: #6c757d;
+    margin-bottom: 24px;
+}
+
+.file-manager-empty-state .upload-btn {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-manager-empty-state .upload-btn:hover {
+    background-color: #0b5ed7;
+}
+
+.file-manager-empty-state .upload-btn i {
+    font-size: 16px;
+    color: white;
+    margin: 0;
+}
+
+/* File Manager Empty State || End */
+
+/* File Manager File Info Modal || Start */
+.files-dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 5px);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    min-width: 140px;
+    z-index: 1000;
+    display: none;
+    padding: 0;
+    border: 1px solid #eaeaea;
+}
+
+.files-dropdown-menu.show {
+    display: block;
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+.files-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.files-dropdown-menu a:hover {
+    background-color: #f7fafc;
+    color: #2d3748;
+}
+
+.files-dropdown-menu i {
+    font-size: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+.files-dropdown-menu .delete-option {
+    color: #e53e3e;
+}
+
+.files-dropdown-menu .delete-option:hover {
+    background-color: #fff5f5;
+    color: #c53030;
+}
+
+.files-dropdown-menu .info-option {
+    color: #3182ce;
+}
+
+.files-dropdown-menu .info-option:hover {
+    background-color: #ebf8ff;
+    color: #2b6cb0;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Menu dot button styling */
+.menu-dot {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-dot:hover {
+    background-color: #f7fafc;
+}
+
+.menu-dot i {
+    font-size: 18px;
+    color: #718096;
+}
+
+/* Prevent text selection on menu items */
+.files-dropdown-menu a {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Add divider between certain menu items if needed */
+.files-dropdown-menu a:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* File Manager File Info Modal || End */
+
+/* File Manager Loader || Start */
+.advanced-file-manager-loader-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.loader-container-hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.loader-circle {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loader-text {
+    color: #2d3748;
+    font-size: 16px;
+    font-weight: 500;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* File Manager Loader || End */
+
+.files-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.files-header-end {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.file-list-container-view {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-size: 1.25rem;
+    color: #364a63;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height: 2.25rem;
+}
+
+.file-list-container-view .file-list-container-view-style {
+    height: 2.25rem;
+    width: 2.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: #FFFFFF;
+}
+
+.file-list-container-view .file-list-container-view-style.active,
+.file-list-container-view .file-list-container-view-style:hover {
+    background: #e9e9e9;
+}
+
+/* File Manager Modal || Start */
+.advanced-file-manager-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.advanced-file-manager-modal-content {
+    margin: auto;
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+#modalImage {
+    width: auto;
+    max-width: 100%;
+    max-height: 90vh;
+    margin: auto;
+    display: block;
+}
+
+.advanced-file-manager-modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.advanced-file-manager-file-info-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.advanced-file-manager-file-info-content h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* File Manager Modal || End */
+
+.folder-breadcrumb {
+
+}
+
+.folder-breadcrumb .breadcrumb {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.folder-breadcrumb .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.folder-breadcrumb .breadcrumb-item + .breadcrumb-item {
+    padding-left: 8px;
+}
+
+.folder-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: "→";
+    padding-right: 8px;
+    color: #019875;
+    font-weight: bold;
+}
+
+.folder-breadcrumb .breadcrumb-item a {
+    color: #019875;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.folder-breadcrumb .breadcrumb-item.active {
+    color: #364a63;
+}
+
+/* Storage Error Container || Start */
+.storage-error-container {
+    padding: 20px;
+    background-color: #fff3f3;
+    border: 1px solid #ffcdd2;
+    border-radius: .75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.storage-error-container .storage-error-icon {
+    color: #d32f2f;
+    font-size: 48px;
+}
+
+.storage-error-container .storage-error-heading {
+    color: #d32f2f;
+    margin-bottom: 5px;
+}
+
+.storage-error-container .storage-error-text {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: .85rem;
+}
+
+.storage-error-container .storage-error-list {
+    list-style: none;
+    padding: 0;
+    color: #666;
+}
+
+.storage-error-container .storage-error-list-item {
+    margin-bottom: 5px;
+}
+
+/* Storage Error Container || End */

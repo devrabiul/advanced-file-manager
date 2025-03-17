@@ -1,0 +1,68 @@
+.pagination {
+    --afm-primary: #1455ac;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .35rem;
+    padding: 0 .75rem;
+    --afm-pagination-bg: #fff;
+    --afm-pagination-color: #000;
+    --afm-pagination-color: var(--afm-primary);
+    --afm-pagination-active-bg: var(--afm-primary);
+    --afm-pagination-focus-color: var(--afm-primary);
+    --afm-pagination-active-border-color: var(--afm-primary);
+    --afm-pagination-border-width: 1px;
+    --afm-pagination-border-color: #dee2e6;
+    --afm-pagination-active-color: #dee2e6;
+    --afm-pagination-focus-box-shadow: none;
+    list-style: none;
+}
+
+.pagination .page-item .page-link {
+    --size: 2rem;
+    width: var(--size);
+    height: var(--size);
+    font-size: .85rem;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .25rem;
+    user-select: none;
+
+    padding: 0.375rem 0.75rem;
+    color: var(--afm-pagination-color);
+    text-decoration: none;
+    background-color: var(--afm-pagination-bg);
+    border: var(--afm-pagination-border-width) solid var(--afm-pagination-border-color);
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.pagination .page-item.active .page-link {
+    color: var(--afm-pagination-active-color);
+    background-color: var(--afm-pagination-active-bg);
+    border-color: var(--afm-pagination-active-border-color);
+}
+
+.pagination .page-item:hover .page-link {
+    --afm-pagination-hover-bg: rgba(var(--afm-primary-rgb), .8);
+    --afm-pagination-hover-color: #FFFFFF;
+    font-weight: 600;
+}
+
+.pagination .page-item.disabled .page-link {
+
+}
+
+/*.pagination .page-item {*/
+/*    position: relative;*/
+/*}*/
+
+/*.pagination .page-item:before {*/
+/*    border: 1px solid var(--afm-primary);*/
+/*}*/
+
+/*.pagination .page-item:after {*/
+/*    border: 1px solid var(--afm-primary);*/
+/*}*/

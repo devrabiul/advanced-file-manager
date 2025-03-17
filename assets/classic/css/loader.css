@@ -1,0 +1,10 @@
+.quick-access-loading {
+    margin-bottom: 2rem;
+    max-height: calc(100% - 9.5rem);
+    overflow-y: auto;
+    padding-inline-end: .25rem;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

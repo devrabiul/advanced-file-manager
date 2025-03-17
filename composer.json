@@ -1,0 +1,37 @@
+{
+    "name": "devrabiul/advanced-file-manager",
+    "description": "A powerful and flexible file manager package for Laravel applications.",
+    "keywords": ["laravel", "toaster", "magic", "notifications"],
+    "homepage": "https://github.com/devrabiul/advanced-file-manager",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Muhammad Rabiul",
+            "email": "devrabiul@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Devrabiul\\AdvancedFileManager\\": "src/"
+        },
+        "files": [
+            "src/utils/FileManagerTranslate.php"
+        ]
+    },
+    "extra": {
+        "laravel" :{
+            "providers" : [
+                "Devrabiul\\AdvancedFileManager\\AdvancedFileManagerServiceProvider"
+            ],
+            "aliases": {
+                "AdvancedFileManager": "Devrabiul\\AdvancedFileManager\\Facades\\AdvancedFileManager"
+            }
+        }
+    },
+    "require": {
+        "league/flysystem-aws-s3-v3": "^3.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

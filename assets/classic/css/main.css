@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --file-manager-sidebar-width: 250px;
+    --folder-item-bg: #FFFFFF;
+    --box-shadow-style-1: rgba(114, 114, 255, 0.12) 0 5px 15px 0;
+    font-family: "Montserrat", serif;
+}
+
+.file-manager-main-container {
+    background-color: #f5f6fa;
+    height: calc(100vh - 60px);
+    position: relative;
+    display: flex;
+}
+
+body {
+    margin-bottom: 0 !important;
+}
+
+.item-cursor-pointer {
+    cursor: pointer;
+}
