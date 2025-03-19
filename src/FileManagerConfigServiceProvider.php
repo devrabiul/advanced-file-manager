@@ -42,14 +42,14 @@ class FileManagerConfigServiceProvider extends ServiceProvider
 
     }
 
-    private function registerResources()
+    private function registerResources(): void
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes/advanced-file-manager.php');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'advanced-file-manager');
         $this->commands($this->registerCommands());
     }
 
-    private function registerCommands()
+    private function registerCommands(): array
     {
         return [
             // EmptyTrash::class,

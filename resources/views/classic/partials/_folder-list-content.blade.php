@@ -1,10 +1,7 @@
 @if(isset($folderArray))
-
     @if(request('targetFolder'))
         <div class="file-manager-folder-item" onclick="openFolderByAjax('')">
             <div class="folder-icon folder-icon-back">
-                {{--                <img src="{{ url('vendor/advanced-file-manager/assets/images/return-back.svg') }}" alt="" srcset=""--}}
-                {{--                     class="svg">--}}
                 <img src="{{ url('vendor/advanced-file-manager/assets/classic/images/classic-return-back.svg') }}" alt="" srcset=""
                      class="svg">
             </div>
@@ -25,14 +22,12 @@
                  data-preview-url="{{ $folder['url'] ?? '' }}"
              data-is-image="true"
              @endif
-             style="cursor: pointer;">
+        >
             <div class="folder-icon">
                 @if(isset($folder['isImage']) && $folder['isImage'])
                     <img src="{{ $folder['thumbnail'] ?? $folder['url'] }}" alt="{{ $folder['name'] }}"
                          class="folder-thumbnail">
                 @else
-                    {{-- <img src="{{ url('vendor/advanced-file-manager/assets/images/folder.svg') }}" alt="" srcset=""
-                         class="svg"> --}}
                     <img src="{{ url('vendor/advanced-file-manager/assets/classic/images/classic-folder.svg') }}" alt="" srcset=""
                          class="svg">
                 @endif

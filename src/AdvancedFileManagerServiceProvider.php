@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class AdvancedFileManagerServiceProvider extends ServiceProvider
 {
 
-    public function register()
+    public function register(): void
     {
         $configPath = config_path('advanced-file-manager.php');
 

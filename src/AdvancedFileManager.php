@@ -26,9 +26,9 @@ class AdvancedFileManager
 
     public function content(array $option = [])
     {
-        if (isset($option['language']) && !empty($option['language'])) {
-            session()->put('advanced-file-manager-language', $option['language']);
-        }
+//        if (isset($option['language']) && !empty($option['language'])) {
+//            session()->put('advanced-file-manager-language', $option['language']);
+//        }
 
         return view('advanced-file-manager::classic.index-new');
         if ($this->theme == 'modern') {

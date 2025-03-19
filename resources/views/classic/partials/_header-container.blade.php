@@ -14,7 +14,8 @@
         <div class="search-container">
             <label>
                 <i class="bi bi-search"></i>
-                <input type="search" placeholder="{{ fileManagerTrans('Search_files,_folders') }}...">
+                <input type="search" class="global-search-input" placeholder="{{ fileManagerTrans('Search_files,_folders') }}..."
+                data-route="{{ route('advanced-file-manager.folder-content') }}">
             </label>
         </div>
 

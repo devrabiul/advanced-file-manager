@@ -1,7 +1,7 @@
 {
     "name": "devrabiul/advanced-file-manager",
-    "description": "A powerful and flexible file manager package for Laravel applications.",
-    "keywords": ["laravel", "toaster", "magic", "notifications"],
+    "description": "An advanced file manager package for Laravel with support for cloud storage, flexible configurations, and a user-friendly API.",
+    "keywords": ["laravel", "file manager", "storage", "s3", "cloud storage", "filesystem", "file upload"],
     "homepage": "https://github.com/devrabiul/advanced-file-manager",
     "license": "MIT",
     "type": "library",

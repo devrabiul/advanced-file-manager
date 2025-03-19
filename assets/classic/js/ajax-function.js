@@ -111,6 +111,62 @@ function ajaxForLoadHtmlSidebarContent(driver, loader = true) {
     });
 }
 
+document.querySelector('.file-manager-root-container').addEventListener('input', function(event) {
+    // Check if the input is from the search field
+    if (event.target && event.target.matches('.global-search-input')) {
+        event.preventDefault();
+
+        const searchTerm = event.target.value; // Capture the search term from the input element
+        const page = new URL(window.location.href).searchParams.get('page') ?? 1; // Get the current page or default to 1
+        const url = new URL(window.location.href);
+        const targetFolder = '/'; // Get targetFolder or default to root
+
+        const formData = new FormData();
+        formData.append('page', page);
+        formData.append('targetFolder', targetFolder);
+        formData.append('search', searchTerm); // Add the search term to the request
+        formData.append('type', 'all')
+
+        // Update the URL with the page and search term
+        url.searchParams.set('type', 'all');
+        url.searchParams.set('search', searchTerm);
+        url.searchParams.delete('page');
+        window.history.pushState({}, '', url);
+
+        const contentContainer = document.querySelector('.file-manager-files-container');
+        const searchInput = event.target; // Store the reference to the search input
+
+        // Show loader before sending the request
+        // loaderContainerRender('show');
+
+        // Perform the fetch request
+        fetch(document.querySelector('.global-search-input').getAttribute('data-route'), {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json()) // Assuming the response is JSON
+            .then(response => {
+                // Hide the current content and update with the new content
+                contentContainer.style.display = 'none';
+                contentContainer.innerHTML = response?.html;
+                contentContainer.style.display = 'block';
+
+                // Re-set the search input value to the old one
+                searchInput.value = searchTerm;
+
+                renderFileContentsViewMode();
+                reInitGLightbox();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Hide the loader after the request completes
+                // loaderContainerRender('hide');
+            });
+    }
+});
+
 function openFolderByAjax(targetFolder, driver, loader = true) {
     const url = new URL(window.location.href);
     const route = document.querySelector('.file-manager-files-container').getAttribute('data-route');
@@ -296,7 +352,7 @@ document.querySelector('.file-manager-root-container').addEventListener('input',
         url.searchParams.delete('page');
         window.history.pushState({}, '', url);
 
-        const contentContainer = document.querySelector('.file-manager-files-section');
+        const contentContainer = document.querySelector('.files-list-content-container');
         const searchInput = event.target; // Store the reference to the search input
 
         // Show loader before sending the request
