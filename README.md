@@ -1,6 +1,6 @@
 # Advanced File Manager
 
-A powerful and flexible file manager package for Laravel applications.
+Advanced File Manager is a powerful and flexible Laravel package designed to streamline file management in your applications. Easily manage, organize, and handle files with a seamless integration for enhanced functionality.
 
 ## Features
 
