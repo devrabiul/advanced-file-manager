@@ -34,9 +34,9 @@ class FileManagerHelperService
         $GenData['files'] = $FilesWithInfo;
         $GenData['totalFiles'] = count($AllFilesInCurrentFolder);
 
-        $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified('')))->diffForHumans();
+        $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified('')));
         if ($targetFolder && Storage::exists($targetFolder)) {
-            $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($targetFolder)))->diffForHumans();
+            $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($targetFolder)));
         }
 
         return $GenData;

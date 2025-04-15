@@ -91,9 +91,9 @@ class AdvancedFileManagerService
         $GenData['totalDirectories'] = count($AllDirectories);
 
         try {
-            $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified('')))->diffForHumans();
+            $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified('')));
             if ($targetFolder && Storage::exists($targetFolder)) {
-                $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($targetFolder)))->diffForHumans();
+                $GenData['last_modified'] = Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($targetFolder)));
             }
         } catch (\Exception $e) {
         }
@@ -120,7 +120,7 @@ class AdvancedFileManagerService
                 'size' => FileManagerHelperService::getAdvancedFileFormatSize(Storage::disk(S3FileManagerService::getStorageDriver())->size($file)),
                 'sizeInInteger' => Storage::disk(S3FileManagerService::getStorageDriver())->size($file),
                 'extension' => pathinfo($file, PATHINFO_EXTENSION),
-                'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))->diffForHumans()
+                'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))
             ];
         }
         return $FilesWithInfo;
@@ -153,7 +153,7 @@ class AdvancedFileManagerService
                 'icon' => self::getIconByExtension(extension: 'folder'),
                 // 'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($folder)))->diffForHumans(),
                 'last_modified' => $latestTimestamp
-                    ? Carbon::parse(date('Y-m-d H:i:s', $latestTimestamp))->diffForHumans()
+                    ? Carbon::parse(date('Y-m-d H:i:s', $latestTimestamp))
                     : 'No files found',
                 'totalFiles' => $getAllFilesData['totalFiles'],
                 'size' => $getAllFilesData['size'],
@@ -325,7 +325,7 @@ class AdvancedFileManagerService
             'size' => FileManagerHelperService::getAdvancedFileFormatSize(Storage::disk(S3FileManagerService::getStorageDriver())->size($file)),
             'sizeInInteger' => Storage::disk(S3FileManagerService::getStorageDriver())->size($file),
             'extension' => pathinfo($file, PATHINFO_EXTENSION),
-            'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))->diffForHumans()
+            'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))
         ];
     }
 
@@ -474,7 +474,7 @@ class AdvancedFileManagerService
                     'size' => FileManagerHelperService::getAdvancedFileFormatSize(Storage::disk(S3FileManagerService::getStorageDriver())->size($file)),
                     'sizeInInteger' => Storage::disk(S3FileManagerService::getStorageDriver())->size($file),
                     'extension' => $extension,
-                    'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))->diffForHumans()
+                    'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))
                 ];
             }
         }

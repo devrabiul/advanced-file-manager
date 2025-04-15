@@ -274,7 +274,7 @@ class FolderController extends Controller
                     'size' => FileManagerHelperService::getAdvancedFileFormatSize(Storage::disk(S3FileManagerService::getStorageDriver())->size($file)),
                     'sizeInInteger' => Storage::disk(S3FileManagerService::getStorageDriver())->size($file),
                     'extension' => pathinfo($file, PATHINFO_EXTENSION),
-                    'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))->diffForHumans()
+                    'last_modified' => Carbon::parse(date('Y-m-d H:i:s', Storage::disk(S3FileManagerService::getStorageDriver())->lastModified($file)))
                 ];
             }
 

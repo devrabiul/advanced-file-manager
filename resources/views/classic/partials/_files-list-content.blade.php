@@ -24,7 +24,7 @@
                     <div class="files-info">
                         {{ fileManagerTrans(ucwords($File['type'] ?? 'Others')) }} / {{ $File['size'] }}
                         <br>
-                        {{ $File['last_modified'] }}
+                        {{ $File['last_modified']->diffForHumans() }}
                     </div>
                 </div>
 
