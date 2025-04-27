@@ -2,14 +2,37 @@
 
 namespace Devrabiul\AdvancedFileManager;
 
+use Illuminate\Session\SessionManager as Session;
+use Illuminate\Config\Repository as Config;
+
 class AdvancedFileManager
 {
+    /**
+     * The session manager.
+     *
+     * @var \Illuminate\Session\SessionManager
+     */
+    protected $session;
+
+    /**
+     * The Config handler instance.
+     *
+     * @var \Illuminate\Contracts\Config\Repository
+     */
     protected $config;
+
     protected string $theme;
 
-    function __construct()
+    /**
+     * Constructor.
+     *
+     * @param Session $session The session manager instance.
+     * @param Config $config The configuration repository instance.
+     */
+    function __construct(Session $session, Config $config)
     {
-        $this->config = config('advanced-file-manager');
+        $this->session = $session;
+        $this->config = $config;
         $this->theme = config('advanced-file-manager.theme') ?? 'classic';
     }
 
