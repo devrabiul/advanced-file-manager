@@ -26,11 +26,13 @@ class AdvancedFileManager
 
     public function content(array $option = [])
     {
-//        if (isset($option['language']) && !empty($option['language'])) {
-//            session()->put('advanced-file-manager-language', $option['language']);
-//        }
+        $fileManagerConfig = (array)$this->config->get('advanced-file-manager');
+        $fileManagerConfig = array_merge($fileManagerConfig, $option);
+        if (isset($fileManagerConfig['enabled']) && ($fileManagerConfig['enabled'] === false || $fileManagerConfig['enabled'] === 'false')) {
+            return '';
+        }
 
-        return view('advanced-file-manager::classic.index-new');
+        return view('advanced-file-manager::classic.index-new', compact('fileManagerConfig'));
         if ($this->theme == 'modern') {
             return view('advanced-file-manager::modern.index');
         } elseif ($this->theme == 'material') {

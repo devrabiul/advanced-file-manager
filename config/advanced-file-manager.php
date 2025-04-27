@@ -14,6 +14,14 @@ return [
 
     'name' => 'Advance File Manager',
 
+     /**
+     * Enable or disable the cookie consent banner
+     *
+     * @default true
+     * @env COOKIE_CONSENT_ENABLED
+     */
+    'upload_enabled' => env('FILE_MANAGER_UPLOAD_ENABLED', true),
+
     /*
     |--------------------------------------------------------------------------
     | System Processing Directory

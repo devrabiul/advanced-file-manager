@@ -19,10 +19,12 @@
             </label>
         </div>
 
-        <button id="createBtn" class="header-responsive-btn">
-            <i class="bi bi-plus"></i>
-            <span>{{ fileManagerTrans('Upload') }}</span>
-        </button>
+        @if (isset($fileManagerConfig) && $fileManagerConfig['upload_enabled'])
+            <button id="createBtn" class="header-responsive-btn">
+                <i class="bi bi-plus"></i>
+                <span>{{ fileManagerTrans('Upload') }}</span>
+            </button>
+        @endif
 
         <button id="actionSmartFileSync" class="header-responsive-btn"
             data-route="{{ route('advanced-file-manager.smart-file-sync') }}">
