@@ -16,8 +16,14 @@ class FileManagerConfigServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('AdvancedFileManager', function () {
-            return new AdvancedFileManager();
+        $configPath = config_path('advanced-file-manager.php');
+
+        if (!file_exists($configPath)) {
+            config(['advanced-file-manager' => require __DIR__ . '/../config/advanced-file-manager.php']);
+        }
+
+        $this->app->singleton('AdvancedFileManager', function ($app) {
+            return new AdvancedFileManager($app['session'], $app['config']);
         });
     }
 
