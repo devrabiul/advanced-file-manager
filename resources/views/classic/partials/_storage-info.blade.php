@@ -12,10 +12,12 @@ $availableSpace = disk_free_space($diskPath);
     <div class="storage-overview">
         <div class="storage-header">
             <div class="storage-title">
-                <i class="bi bi-hdd-fill"></i>
+                <i class="fi fi-sr-hdd"></i>
                 <span>{{ fileManagerTrans('Storage') }}</span>
             </div>
-            <span class="storage-percentage">{{ (int)(($availableSpace*100)/$totalSpace) }}%</span>
+            <span class="storage-percentage">
+                {{ (int)(($availableSpace*100)/$totalSpace) }}%
+            </span>
         </div>
     </div>
 
@@ -31,14 +33,18 @@ $availableSpace = disk_free_space($diskPath);
     <!-- Storage Details -->
     <div class="storage-details">
         <div class="storage-used">
-            <span class="storage-label">{{ fileManagerTrans('Used') }}</span>
+            <span class="storage-label">
+                {{ fileManagerTrans('Used') }}
+            </span>
             <span class="storage-value">
                 {{ FileManagerHelperService::getAdvancedFileFormatSize($availableSpace) }}
             </span>
         </div>
         <div class="storage-divider"></div>
         <div class="storage-total">
-            <span class="storage-label">{{ fileManagerTrans('Total') }}</span>
+            <span class="storage-label">
+                {{ fileManagerTrans('Total') }}
+            </span>
             <span class="storage-value">
                 {{ FileManagerHelperService::getAdvancedFileFormatSize($totalSpace) }}
             </span>

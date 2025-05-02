@@ -1,6 +1,6 @@
 <section class="file-manager-sidebar-container">
     <button class="sidebar-close-mobile">
-        <i class="bi bi-x-lg"></i>
+        <i class="fi fi-rr-circle-xmark"></i>
     </button>
 
     <!-- Quick Access -->
@@ -26,7 +26,7 @@
             </option>
             @endforeach
         </select>
-        <i class="bi bi-chevron-down"></i>
+        <i class="fi fi-rr-chevron-double-down chevron-down"></i>
     </div>
 
     <div class="quick-access-section" data-route="{{ route('advanced-file-manager.sidebar-content') }}">

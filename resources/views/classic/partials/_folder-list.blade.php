@@ -1,7 +1,7 @@
 <div class="folders-section-header">
     <div>
         <h5 class="folders-section-title">
-            <span><i class="bi bi-folder-fill"></i></span>
+            <span><i class="fi fi-sr-folder"></i></span>
             <span>{{ fileManagerTrans('Folders') }}</span>
         </h5>
         <p class="folders-section-subtitle">{{ fileManagerTrans('Manage_your_folders_easily') }}</p>
@@ -35,7 +35,7 @@
     @if(!request('targetFolder') && count($folderArray) <= 0)
         <div class="file-manager-empty-state">
             <div class="empty-state-content">
-                <i class="bi bi-folder-x"></i>
+                <i class="fi fi-sr-remove-folder"></i>
                 <h3>{{ fileManagerTrans('No_Folder_Found') }}</h3>
                 <p>
                     {{ fileManagerTrans('This_folder_is_empty.') }}

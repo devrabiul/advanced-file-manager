@@ -11,7 +11,9 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5>{{ fileManagerTrans('File_Information') }}</h5>
-            <button class="close-modal"><i class="bi bi-x"></i></button>
+            <button class="close-modal">
+                <i class="fi fi-rr-circle-xmark"></i>
+            </button>
         </div>
         <div class="modal-body">
             <div id="file-info-content" data-route="{{ route('advanced-file-manager.folders.get-file-info') }}">
@@ -26,7 +28,9 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5>{{ fileManagerTrans('Upload_Files') }}</h5>
-            <button class="close-modal"><i class="bi bi-x"></i></button>
+            <button class="close-modal">
+                <i class="fi fi-rr-circle-xmark"></i>
+            </button>
         </div>
         <div class="modal-body">
             <div class="upload-area">
@@ -38,7 +42,7 @@
         {{-- <div class="upload-actions">
             <button type="button" class="btn-cancel">Cancel</button>
             <button type="button" class="btn-upload">
-                <i class="bi bi-cloud-arrow-up"></i>
+                <i class="fi fi-rr-cloud-upload-alt"></i>
                 Upload
             </button>
         </div> --}}

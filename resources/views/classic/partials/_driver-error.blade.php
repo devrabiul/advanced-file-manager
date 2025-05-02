@@ -1,6 +1,6 @@
 <div class="storage-error-container">
     <div class="storage-error-icon">
-        <i class="bi bi-exclamation-octagon"></i>
+        <i class="fi fi-rr-shield-exclamation"></i>
     </div>
     <div>
         <h3 class="storage-error-heading">

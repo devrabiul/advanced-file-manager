@@ -30,29 +30,29 @@
 
                 <div class="files-option-element">
                     <button class="menu-dot" onclick="toggleDropdown(event, this)">
-                        <i class="bi bi-three-dots"></i>
+                        <i class="fi fi-rr-menu-dots"></i>
                     </button>
                     <div class="files-dropdown-menu">
                         <a href="#" onclick="openFile('{{ $File['encodePath'] }}')">
-                            <i class="bi bi-eye"></i> {{ fileManagerTrans('Open') }}
+                            <i class="fi fi-rr-eye"></i> {{ fileManagerTrans('Open') }}
                         </a>
                         <a href="#" onclick="renameFile('{{ $File['encodePath'] }}')">
-                            <i class="bi bi-pencil"></i> {{ fileManagerTrans('Rename') }}
+                            <i class="fi fi-rr-pencil"></i> {{ fileManagerTrans('Rename') }}
                         </a>
                         <a href="#" onclick="copyFile('{{ $File['encodePath'] }}')">
-                            <i class="bi bi-files"></i> {{ fileManagerTrans('Copy') }}
+                            <i class="fi fi-rr-document"></i> {{ fileManagerTrans('Copy') }}
                         </a>
                         <a href="#" onclick="moveFile('{{ $File['encodePath'] }}')">
-                            <i class="bi bi-arrows-move"></i> {{ fileManagerTrans('Move') }}
+                            <i class="fi fi-rr-move-to-folder-2"></i> {{ fileManagerTrans('Move') }}
                         </a>
                         <a href="{{ $File['full_path'] }}" download>
-                            <i class="bi bi-download"></i> {{ fileManagerTrans('Download') }}
+                            <i class="fi fi-rr-cloud-download-alt"></i> {{ fileManagerTrans('Download') }}
                         </a>
                         <a href="#" onclick="getFileInfo('{{ $File['encodePath'] }}')" class="info-option">
-                            <i class="bi bi-info-circle"></i> {{ fileManagerTrans('Get_Info') }}
+                            <i class="fi fi-rr-interrogation"></i> {{ fileManagerTrans('Get_Info') }}
                         </a>
                         <a href="#" onclick="deleteFile('{{ $File['encodePath'] }}')" class="delete-option">
-                            <i class="bi bi-trash"></i> {{ fileManagerTrans('Delete') }}
+                            <i class="fi fi-rr-trash"></i> {{ fileManagerTrans('Delete') }}
                         </a>
                     </div>
                 </div>
@@ -67,14 +67,14 @@
 @else
     <div class="file-manager-empty-state">
         <div class="empty-state-content">
-            <i class="bi bi-folder-x"></i>
+            <i class="fi fi-rr-remove-folder"></i>
             <h3>{{ fileManagerTrans('No_Files_Found') }}</h3>
             <p>
                 {{ fileManagerTrans('This_folder_is_empty.') }}
                 {{ fileManagerTrans('Upload_some_files_to_get_started').' !' }}
             </p>
             <button class="upload-btn">
-                <i class="bi bi-cloud-upload"></i>
+                <i class="fi fi-rr-cloud-upload-alt"></i>
                 {{ fileManagerTrans('Upload_Files') }}
             </button>
         </div>

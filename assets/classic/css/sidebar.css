@@ -347,13 +347,14 @@
     color: #333;
 }
 
-.quick-access-dropdown .bi-chevron-down {
+.quick-access-dropdown .chevron-down {
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
     color: #666;
+    font-size: 10px;
 }
 
 .quick-access-dropdown .custom-select:hover {

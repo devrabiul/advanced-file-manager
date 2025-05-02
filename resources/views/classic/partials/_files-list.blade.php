@@ -1,7 +1,7 @@
 <div class="files-header">
     <div class="files-header-title">
         <h5 class="folders-section-title">
-            <span><i class="bi bi-grid-fill"></i></span>
+            <span><i class="fi fi-sr-apps"></i></span>
             <span>{{ fileManagerTrans('Files') }}</span>
         </h5>
         <p class="folders-section-subtitle">
@@ -12,7 +12,7 @@
     <div class="files-header-end">
         <div class="search-container">
             <div class="search-wrapper">
-                <i class="bi bi-search search-icon"></i>
+                <i class="fi fi-rr-search search-icon"></i>
                 <input type="text" class="file-search-input" placeholder="Search files..." value="{{ request('search') }}">
             </div>
         </div>
@@ -20,11 +20,11 @@
         <div class="file-list-container-view" data-route="{{ route('advanced-file-manager.view-style-setup') }}">
             <div class="file-list-container-view-style {{ session('file_list_container_view_mode') == 'list-view' ? 'active' : '' }}" 
             data-style="list-view">
-                <i class="bi bi-view-list"></i>
+                <i class="fi fi-sr-list"></i>
             </div>
             <div class="file-list-container-view-style {{ session('file_list_container_view_mode') == 'grid-view' ? 'active' : '' }}" 
             data-style="grid-view">
-                <i class="bi bi-grid-fill"></i>
+                <i class="fi fi-sr-apps"></i>
             </div>
         </div>
     </div>

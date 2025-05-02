@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/classic/css/modal.css') }}">
 <link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/classic/css/pagination.css') }}">
 
-<link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/libs/bootstrap-icons-1.11.3/bootstrap-icons.min.css') }}" async>
+<link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/libs/flaticons/uicons/css/all.css') }}" async>
+{{-- <link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/libs/bootstrap-icons-1.11.3/bootstrap-icons.min.css') }}" async> --}}
 <link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/libs/placeholder/placeholder-loading.min.css') }}">
 <link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/libs/filepond/filepond.min.css') }}">
 <link rel="stylesheet" href="{{ url('vendor/advanced-file-manager/assets/libs/filepond/filepond-plugin-image-edit.css') }}">
