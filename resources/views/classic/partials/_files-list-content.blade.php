@@ -36,7 +36,7 @@
                         <a href="#" onclick="openFile('{{ $File['encodePath'] }}')">
                             <i class="fi fi-rr-eye"></i> {{ fileManagerTrans('Open') }}
                         </a>
-                        <a href="#" onclick="renameFile('{{ $File['encodePath'] }}')">
+                        {{-- <a href="#" onclick="renameFile('{{ $File['encodePath'] }}')">
                             <i class="fi fi-rr-pencil"></i> {{ fileManagerTrans('Rename') }}
                         </a>
                         <a href="#" onclick="copyFile('{{ $File['encodePath'] }}')">
@@ -44,16 +44,16 @@
                         </a>
                         <a href="#" onclick="moveFile('{{ $File['encodePath'] }}')">
                             <i class="fi fi-rr-move-to-folder-2"></i> {{ fileManagerTrans('Move') }}
-                        </a>
+                        </a> --}}
                         <a href="{{ $File['full_path'] }}" download>
                             <i class="fi fi-rr-cloud-download-alt"></i> {{ fileManagerTrans('Download') }}
                         </a>
                         <a href="#" onclick="getFileInfo('{{ $File['encodePath'] }}')" class="info-option">
                             <i class="fi fi-rr-interrogation"></i> {{ fileManagerTrans('Get_Info') }}
                         </a>
-                        <a href="#" onclick="deleteFile('{{ $File['encodePath'] }}')" class="delete-option">
+                        {{-- <a href="#" onclick="deleteFile('{{ $File['encodePath'] }}')" class="delete-option">
                             <i class="fi fi-rr-trash"></i> {{ fileManagerTrans('Delete') }}
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
