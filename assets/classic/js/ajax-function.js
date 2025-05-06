@@ -1,8 +1,4 @@
 // Initialize File Manager
-document.addEventListener("DOMContentLoaded", function () {
-
-});
-
 // On page load, check the local storage and set the view mode
 window.addEventListener('DOMContentLoaded', () => {
     const url = new URL(window.location.href);
@@ -13,62 +9,39 @@ window.addEventListener('DOMContentLoaded', () => {
     renderFileContentsViewMode();
 });
 
-function renderFileContentsViewMode() {
-    const savedViewMode = localStorage.getItem('file_list_container_view_mode');
+function updateUrlParams(targetFolder = '', driver = '') {
+    const url = new URL(window.location.href);
+    // Update the URL query parameters
+    if (targetFolder) {
+        url.searchParams.set('targetFolder', targetFolder);
+    } else {
+        url.searchParams.delete('targetFolder');
+    }
+    if (driver) {
+        url.searchParams.set('driver', driver);
+    } else {
+        url.searchParams.delete('driver');
+    }
+    window.history.pushState({}, '', url);
+}
 
-    if (savedViewMode) {
-        // Set the corresponding active class based on the saved view mode
-        const targetStyleElement = document.querySelector(`.file-list-container-view-style[data-style="${savedViewMode}"]`);
-        if (targetStyleElement) {
-            targetStyleElement.classList.add('active');
-        }
-
-        // Update the content container class based on the saved view mode
-        const contentContainer = document.querySelector('.file-manager-files-section');
-        if (contentContainer) {
-            contentContainer.classList.remove('grid-view', 'list-view');
-            contentContainer.classList.add(savedViewMode);
-        }
+function loaderContainerRender(action) {
+    const loaderContainer = document.querySelector(".advanced-file-manager-loader-container");
+    const fileManagerFiles = document.querySelector(".file-manager-files-container");
+    
+    if (action === 'show') {
+        fileManagerFiles.style.overflowY = 'hidden';
+        loaderContainer.classList.remove('loader-container-hide');
+    }
+    
+    if (action === 'hide') {
+        setTimeout(() => {
+            fileManagerFiles.style.overflowY = 'auto';
+            loaderContainer.classList.add('loader-container-hide');
+        }, 300);
     }
 }
 
-document.querySelector('.file-manager-root-container').addEventListener('change', function(event) {
-    // Check if the input is from the search field
-    if (event.target && event.target.matches('.quick-access-dropdown .custom-select')) {
-        event.preventDefault();
-        const driver = event.target.value;
-        getLoadSidebarContent(driver);
-        openFolderByAjax('', driver);
-    }
-});
-
-function getLoadSidebarContent(driver = 'public') {
-    const contentContainer = document.querySelector('.file-manager-sidebar-container');
-    contentContainer.classList.remove('show');
-    ajaxForLoadHtmlSidebarContent(driver);
-}
-
-document.getElementById('actionSmartFileSync').addEventListener('click', function(event) {
-    reloadSmartFileSyncContent();
-});
-
-function reloadSmartFileSyncContent() {
-    const route = document.querySelector('#actionSmartFileSync').getAttribute('data-route');
-
-    fetch(route, {
-        method: 'POST'
-    })
-    .then(response => response.json()) // Assuming the response is JSON
-    .then(response => {
-        const url = new URL(window.location.href);
-        const targetFolder = url.searchParams.get('targetFolder') ?? '';
-        const driver = url.searchParams.get('driver') ?? 'public';
-        openFolderByAjax(targetFolder, driver);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
 
 function ajaxForLoadHtmlSidebarLoader() {
     let html = '<div class="quick-access-items">';
@@ -80,6 +53,12 @@ function ajaxForLoadHtmlSidebarLoader() {
     return html;
 }
 
+
+function getLoadSidebarContent(driver = 'public') {
+    const contentContainer = document.querySelector('.file-manager-sidebar-container');
+    contentContainer.classList.remove('show');
+    ajaxForLoadHtmlSidebarContent(driver);
+}
 
 function ajaxForLoadHtmlSidebarContent(driver, loader = true) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -110,6 +89,104 @@ function ajaxForLoadHtmlSidebarContent(driver, loader = true) {
 
     });
 }
+
+function openFolderByAjax(targetFolder, driver, loader = true) {
+    const url = new URL(window.location.href);
+    const route = document.querySelector('.file-manager-files-container').getAttribute('data-route');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    driver = driver ?? (url.searchParams.get('driver') ?? 'public');
+
+    const formData = new FormData();
+    formData.append('_token', csrfToken);
+    formData.append('targetFolder', targetFolder);
+    formData.append('driver', driver);
+
+    url.searchParams.delete('search');
+    url.searchParams.delete('page');
+
+    const contentContainer = document.querySelector('.advanced-file-manager-content');
+
+    if (loader) {
+        loaderContainerRender('show');
+    }
+
+    fetch(route, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // Assuming the response is JSON
+    .then(response => {
+        // Hide and clear the content, then replace it with new HTML
+        contentContainer.style.display = 'none';
+        contentContainer.innerHTML = response.html;
+        contentContainer.style.display = 'block';
+
+        updateUrlParams(targetFolder, driver);
+
+        renderFileContentsViewMode();
+        reInitGLightbox();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    })
+    .finally(() => {
+        if (loader) {   
+            loaderContainerRender('hide');
+        }
+    });
+}
+
+function renderFileContentsViewMode() {
+    const savedViewMode = localStorage.getItem('file_list_container_view_mode');
+
+    if (savedViewMode) {
+        // Set the corresponding active class based on the saved view mode
+        const targetStyleElement = document.querySelector(`.file-list-container-view-style[data-style="${savedViewMode}"]`);
+        if (targetStyleElement) {
+            targetStyleElement.classList.add('active');
+        }
+
+        // Update the content container class based on the saved view mode
+        const contentContainer = document.querySelector('.file-manager-files-section');
+        if (contentContainer) {
+            contentContainer.classList.remove('grid-view', 'list-view');
+            contentContainer.classList.add(savedViewMode);
+        }
+    }
+}
+
+document.querySelector('.file-manager-root-container').addEventListener('change', function(event) {
+    // Check if the input is from the search field
+    if (event.target && event.target.matches('.quick-access-dropdown .custom-select')) {
+        event.preventDefault();
+        const driver = event.target.value;
+        getLoadSidebarContent(driver);
+        openFolderByAjax('', driver);
+    }
+});
+
+document.getElementById('actionSmartFileSync').addEventListener('click', function(event) {
+    reloadSmartFileSyncContent();
+});
+
+function reloadSmartFileSyncContent() {
+    const route = document.querySelector('#actionSmartFileSync').getAttribute('data-route');
+
+    fetch(route, {
+        method: 'POST'
+    })
+    .then(response => response.json()) // Assuming the response is JSON
+    .then(response => {
+        const url = new URL(window.location.href);
+        const targetFolder = url.searchParams.get('targetFolder') ?? '';
+        const driver = url.searchParams.get('driver') ?? 'public';
+        openFolderByAjax(targetFolder, driver);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 
 document.querySelector('.file-manager-root-container').addEventListener('input', function(event) {
     // Check if the input is from the search field
@@ -167,67 +244,6 @@ document.querySelector('.file-manager-root-container').addEventListener('input',
     }
 });
 
-function openFolderByAjax(targetFolder, driver, loader = true) {
-    const url = new URL(window.location.href);
-    const route = document.querySelector('.file-manager-files-container').getAttribute('data-route');
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    driver = driver ?? (url.searchParams.get('driver') ?? 'public');
-
-    const formData = new FormData();
-    formData.append('_token', csrfToken);
-    formData.append('targetFolder', targetFolder);
-    formData.append('driver', driver);
-
-    url.searchParams.delete('search');
-    url.searchParams.delete('page');
-
-    const contentContainer = document.querySelector('.advanced-file-manager-content');
-
-    if (loader) {
-        loaderContainerRender('show');
-    }
-
-    fetch(route, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json()) // Assuming the response is JSON
-    .then(response => {
-        // Hide and clear the content, then replace it with new HTML
-        contentContainer.style.display = 'none';
-        contentContainer.innerHTML = response.html;
-        contentContainer.style.display = 'block';
-
-        updateUrlParams(targetFolder, driver);
-
-        renderFileContentsViewMode();
-        reInitGLightbox();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    })
-    .finally(() => {
-        if (loader) {   
-            loaderContainerRender('hide');
-        }
-    });
-}
-
-function updateUrlParams(targetFolder = '', driver = '') {
-    const url = new URL(window.location.href);
-    // Update the URL query parameters
-    if (targetFolder) {
-        url.searchParams.set('targetFolder', targetFolder);
-    } else {
-        url.searchParams.delete('targetFolder');
-    }
-    if (driver) {
-        url.searchParams.set('driver', driver);
-    } else {
-        url.searchParams.delete('driver');
-    }
-    window.history.pushState({}, '', url);
-}
 
 // Handle pagination clicks dynamically
 document.querySelector('.file-manager-root-container').addEventListener('click', function(event) {
@@ -437,22 +453,4 @@ function openFilesByAjax(fileType, driver = 'public') {
     .finally(() => {
         loaderContainerRender('hide');
     });
-}
-
-
-function loaderContainerRender(action) {
-    const loaderContainer = document.querySelector(".advanced-file-manager-loader-container");
-    const fileManagerFiles = document.querySelector(".file-manager-files-container");
-    
-    if (action === 'show') {
-        fileManagerFiles.style.overflowY = 'hidden';
-        loaderContainer.classList.remove('loader-container-hide');
-    }
-    
-    if (action === 'hide') {
-        setTimeout(() => {
-            fileManagerFiles.style.overflowY = 'auto';
-            loaderContainer.classList.add('loader-container-hide');
-        }, 300);
-    }
 }

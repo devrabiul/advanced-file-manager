@@ -14,10 +14,6 @@
     display: flex;
 }
 
-body {
-    margin-bottom: 0 !important;
-}
-
 .item-cursor-pointer {
     cursor: pointer;
 }
